@@ -10,7 +10,7 @@ updated: 2026-11-02
 
 > 供 AI / RAG 枚举全部页面。每页：路径 + 首行标题。按顶层目录分组。
 
-> 共 67 个内容页面（不含 README/SCHEMA/AGENTS/LICENSE）。
+> 共 69 个内容页面（不含 README/SCHEMA/AGENTS/LICENSE）。
 
 ## 00-start-here
 
@@ -18,6 +18,7 @@ updated: 2026-11-02
 - [00-start-here/beginners-myths.md](00-start-here/beginners-myths.md) — 新手常见误区
 - [00-start-here/learning-path.md](00-start-here/learning-path.md) — SEO 学习路径（路线图）
 - [00-start-here/what-is-seo.md](00-start-here/what-is-seo.md) — SEO 是什么
+- [00-start-here/why-this-kb.md](00-start-here/why-this-kb.md) — 为什么需要这个知识库（而不是直接问 AI）
 
 ## 10-fundamentals
 
@@ -113,3 +114,4 @@ updated: 2026-11-02
 - [references/ahrefs-seo-guide.md](references/ahrefs-seo-guide.md) — 信源索引：Ahrefs SEO 指南（中文）
 - [references/gefei-seo-collection.md](references/gefei-seo-collection.md) — 信源索引：哥飞 SEO 合集（作者私有 vault）
 - [references/saas-seo-playbook.md](references/saas-seo-playbook.md) — 信源索引：saas-seo-playbook
+- [references/公众号介绍-seo知识库.md](references/公众号介绍-seo知识库.md) — 我做了一个 SEO 知识库：新手能系统学，AI 接上就能答
