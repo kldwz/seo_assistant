@@ -1,0 +1,7 @@
+# OS / editor
+.DS_Store
+.obsidian/
+*.swp
+
+# not committing raw private sources — references only
+sources-raw/
