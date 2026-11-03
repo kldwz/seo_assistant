@@ -120,9 +120,12 @@ def main():
         if title in seen_titles:
             title = f"{title}（{fid}）"
         seen_titles[title] = fid
+        first = rel.split("/")[0]
+        module = "(根)" if first.endswith(".md") else first
         nodes[fid] = {
             "id": fid,
             "title": title,
+            "module": module,
             "tags": fm.get("tags", []),
             "degree": 0,
         }
@@ -183,70 +186,144 @@ def write_html(graph):
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEO 知识库 · 关系图谱</title>
 <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
 <style>
-  html,body{margin:0;height:100%;font-family:-apple-system,Segoe UI,Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:#0f1115;color:#e6e6e6}
-  #bar{position:fixed;top:0;left:0;right:0;height:48px;display:flex;align-items:center;gap:12px;padding:0 16px;background:#171a21;border-bottom:1px solid #2a2f3a;z-index:10}
-  #bar input{background:#0f1115;border:1px solid #2a2f3a;color:#e6e6e6;padding:6px 10px;border-radius:6px;width:280px;font-size:13px}
-  #bar .stat{font-size:12px;color:#8b93a1}
-  #cy{position:absolute;top:48px;left:0;right:0;bottom:0}
-  .hint{font-size:12px;color:#8b93a1}
+  :root{--bg:#0f1115;--panel:#171a21;--line:#2a2f3a;--txt:#e6e6e6;--mut:#8b93a1}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:-apple-system,Segoe UI,Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt)}
+  #bar{position:fixed;top:0;left:0;right:0;height:52px;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line);z-index:20;flex-wrap:wrap}
+  #bar strong{font-size:15px}
+  #bar input{background:var(--bg);border:1px solid var(--line);color:var(--txt);padding:7px 11px;border-radius:7px;width:240px;font-size:13px}
+  #bar .stat{font-size:12px;color:var(--mut)}
+  #legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  #legend .lg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mut);cursor:pointer;user-select:none;padding:2px 6px;border-radius:6px}
+  #legend .lg:hover{background:#22262f}
+  #legend .lg.off{opacity:.35;text-decoration:line-through}
+  #legend .dot{width:11px;height:11px;border-radius:3px}
+  #cy{position:absolute;top:52px;left:0;right:340px;bottom:0}
+  #side{position:absolute;top:52px;right:0;width:340px;bottom:0;background:var(--panel);border-left:1px solid var(--line);padding:18px;overflow:auto}
+  #side h2{font-size:16px;margin:0 0 6px}
+  #side .mod{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;color:#0f1115;font-weight:600;margin-bottom:10px}
+  #side .tags{margin:8px 0;font-size:12px;color:var(--mut)}
+  #side .tags span{display:inline-block;background:#22262f;border-radius:5px;padding:2px 7px;margin:2px 4px 2px 0}
+  #side a{color:#4f8cff;text-decoration:none;font-size:13px}
+  #side a:hover{text-decoration:underline}
+  #side .sec{margin-top:16px;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  #side ul{margin:6px 0;padding-left:18px;font-size:13px;line-height:1.7}
+  #side li a{color:#cfd6e0}
+  #side .empty{color:var(--mut);font-size:13px;margin-top:30px;text-align:center}
+  #hint{position:absolute;bottom:12px;left:12px;font-size:11px;color:var(--mut);background:rgba(23,26,33,.8);padding:6px 10px;border-radius:6px;z-index:5}
 </style>
 </head>
 <body>
 <div id="bar">
-  <strong>SEO 知识库关系图谱</strong>
+  <strong>SEO 知识库 · 关系图谱</strong>
   <input id="search" placeholder="搜索节点（标题/路径）…"/>
   <span class="stat" id="stat"></span>
-  <span class="hint">滚轮缩放 · 拖拽平移 · 单击高亮邻居</span>
+  <span id="legend"></span>
 </div>
 <div id="cy"></div>
+<div id="side"><div class="empty">单击任意节点<br/>查看详情与关联页面</div></div>
+<div id="hint">滚轮缩放 · 拖拽平移 · 单击高亮邻居 · 点击图例筛选模块</div>
 <script>
 const DATA = __DATA__;
+const MOD_COLORS = {
+  "00-start-here":"#34d399","10-fundamentals":"#60a5fa","20-keyword":"#f472b6",
+  "30-content":"#fbbf24","40-on-page":"#a78bfa","50-links":"#f87171","60-technical":"#22d3ee",
+  "70-local":"#fb923c","80-ai-search":"#c084fc","90-saas-playbook":"#2dd4bf",
+  "glossary":"#9ca3af","references":"#94a3b8","(根)":"#e5e7eb"
+};
+const MOD_LABELS = {
+  "00-start-here":"入门","10-fundamentals":"基础","20-keyword":"关键词","30-content":"内容",
+  "40-on-page":"页面SEO","50-links":"外链","60-technical":"技术SEO","70-local":"本地SEO",
+  "80-ai-search":"AI搜索","90-saas-playbook":"SaaS实战","glossary":"术语表","references":"信源","(根)":"元文件"
+};
+const colorOf = m => MOD_COLORS[m] || "#9ca3af";
 const cy = cytoscape({
   container: document.getElementById('cy'),
   elements: (function(){
     const els = [];
-    DATA.nodes.forEach(n=>els.push({data:{id:n.id, label:n.title, tags:n.tags.join(','), deg:n.degree}}));
+    DATA.nodes.forEach(n=>els.push({data:{id:n.id, label:n.title, module:n.module, tags:n.tags, deg:n.degree}}));
     DATA.edges.forEach(e=>els.push({data:{id:e.source+'->'+e.target, source:e.source, target:e.target}}));
     return els;
   })(),
   style:[
     {selector:'node', style:{
-      'label':'data(label)', 'color':'#cfd6e0', 'font-size':10, 'text-valign':'bottom', 'text-margin-y':4,
-      'width':(n)=>8+Math.min(n.data('deg'),20), 'height':(n)=>8+Math.min(n.data('deg'),20),
-      'background-color':'#4f8cff', 'text-wrap':'wrap', 'text-max-width':'120px', 'text-outline-color':'#0f1115', 'text-outline-width':2
+      'label':(n)=> n.data('deg')>=6 ? n.data('label') : '',
+      'color':'#0f1115','font-size':11,'font-weight':600,'text-valign':'center',
+      'width':(n)=>14+Math.min(n.data('deg')*2.2,34), 'height':(n)=>14+Math.min(n.data('deg')*2.2,34),
+      'background-color':(n)=>colorOf(n.data('module')),
+      'border-width':(n)=> n.data('deg')>=10?3:1, 'border-color':'#0f1115',
+      'text-outline-color':'#ffffff','text-outline-width':0
     }},
-    {selector:'edge', style:{'width':1,'line-color':'#39414f','curve-style':'bezier','opacity':0.7}},
-    {selector:'node.hl', style:{'background-color':'#ffcc4f','border-width':2,'border-color':'#fff'}},
-    {selector:'node.dim', style:{'opacity':0.15}},
-    {selector:'edge.hl', style:{'line-color':'#ffcc4f','width':2.5,'opacity':1}},
-    {selector:'edge.dim', style:{'opacity':0.05}}
+    {selector:'node.hub', style:{'label':'data(label)'}},
+    {selector:'node.hl', style:{'border-color':'#ffffff','border-width':3}},
+    {selector:'node.dim', style:{'opacity':0.12}},
+    {selector:'edge', style:{'width':1,'line-color':'#39414f','curve-style':'bezier','opacity':0.55}},
+    {selector:'edge.hl', style:{'line-color':'#ffcc4f','width':2.4,'opacity':1}},
+    {selector:'edge.dim', style:{'opacity':0.04}}
   ],
-  layout:{name:'cose', animate:false, padding:40, nodeRepulsion:12000, idealEdgeLength:90, gravity:0.3}
+  layout:{name:'cose', animate:false, padding:50, nodeRepulsion:26000, idealEdgeLength:130, gravity:0.45, numIter:2500, componentSpacing:200}
 });
 document.getElementById('stat').textContent =
-  `节点 ${DATA.stats.node_count} · 边 ${DATA.stats.edge_count} · 孤立 ${DATA.stats.orphan_count} · 断链 ${DATA.stats.missing_link_count}`;
+  `节点 ${DATA.stats.node_count} · 边 ${DATA.stats.edge_count} · 孤立 ${DATA.stats.orphan_count}`;
+// 图例
+const legend = document.getElementById('legend');
+const mods = [...new Set(DATA.nodes.map(n=>n.module))].sort();
+const offMods = new Set();
+mods.forEach(m=>{
+  const lg = document.createElement('span'); lg.className='lg';
+  lg.innerHTML = `<span class="dot" style="background:${colorOf(m)}"></span>${MOD_LABELS[m]||m}`;
+  lg.onclick = ()=>{
+    if(offMods.has(m)){ offMods.delete(m); lg.classList.remove('off'); }
+    else { offMods.add(m); lg.classList.add('off'); }
+    cy.nodes().forEach(n=>{ n.style('display', offMods.has(n.data('module'))?'none':'element'); });
+  };
+  legend.appendChild(lg);
+});
+// 悬停显示标签
+cy.on('mouseover','node',e=>{ if(e.target.data('deg')<6) e.target.style('label', e.target.data('label')); });
+cy.on('mouseout','node',e=>{ if(e.target.data('deg')<6 && !e.target.hasClass('hl')) e.target.style('label',''); });
+// 详情面板
+function showDetail(n){
+  const id = n.id();
+  const title = n.data('label'), mod = n.data('module');
+  const tags = (n.data('tags')||[]).map(t=>`<span>${t}</span>`).join('');
+  const nb = n.neighborhood('node').filter(x=>x.id()!==id);
+  const ins = n.incomers('edge').map(e=>e.source().data('label'));
+  const outs = n.outgoers('edge').map(e=>e.target().data('label'));
+  const gh = `https://github.com/kldwz/seo_assistant/blob/main/${id}.md`;
+  const list = arr => arr.length ? `<ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul>` : '<div style="color:#8b93a1;font-size:12px">无</div>';
+  document.getElementById('side').innerHTML =
+    `<h2>${title}</h2>
+     <span class="mod" style="background:${colorOf(mod)}">${MOD_LABELS[mod]||mod} · ${mod}</span>
+     <div class="tags">${tags||'<span style="color:#8b93a1">无标签</span>'}</div>
+     <a href="${gh}" target="_blank">在 GitHub 打开原文 →</a>
+     <div class="sec">指向（本页链到）</div>${list(outs)}
+     <div class="sec">被指向（谁链到本页）</div>${list(ins)}`;
+}
 const search = document.getElementById('search');
 search.addEventListener('input', ()=>{
   const q = search.value.trim().toLowerCase();
-  if(!q){ cy.elements().removeClass('hl dim'); return; }
+  if(!q){ cy.elements().removeClass('hl dim'); document.getElementById('side').innerHTML='<div class="empty">单击任意节点<br/>查看详情与关联页面</div>'; return; }
   const hit = cy.nodes().filter(n=> n.data('label').toLowerCase().includes(q) || n.id().toLowerCase().includes(q));
   const nb = hit.closedNeighborhood();
   cy.elements().addClass('dim');
-  hit.removeClass('dim').addClass('hl');
+  hit.removeClass('dim');
   nb.removeClass('dim');
   nb.edges().addClass('hl');
 });
-cy.on('tap','node',(e)=>{
+cy.on('tap','node',e=>{
   const n=e.target; const nb=n.closedNeighborhood();
   cy.elements().addClass('dim');
   nb.removeClass('dim');
   n.removeClass('dim').addClass('hl');
   nb.edges().addClass('hl');
+  showDetail(n);
 });
-cy.on('tap',(e)=>{ if(e.target===cy){ cy.elements().removeClass('hl dim'); }});
+cy.on('tap',e=>{ if(e.target===cy){ cy.elements().removeClass('hl dim'); document.getElementById('side').innerHTML='<div class="empty">单击任意节点<br/>查看详情与关联页面</div>'; }});
 </script>
 </body>
 </html>

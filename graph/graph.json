@@ -9,6 +9,7 @@
     {
       "id": "00-start-here/_INDEX",
       "title": "00 新手入口 · 目录索引",
+      "module": "00-start-here",
       "tags": [
         "seo",
         "索引",
@@ -19,6 +20,7 @@
     {
       "id": "00-start-here/beginners-myths",
       "title": "新手常见误区",
+      "module": "00-start-here",
       "tags": [
         "seo",
         "入门",
@@ -29,6 +31,7 @@
     {
       "id": "00-start-here/learning-path",
       "title": "SEO 学习路径（路线图）",
+      "module": "00-start-here",
       "tags": [
         "seo",
         "入门",
@@ -39,6 +42,7 @@
     {
       "id": "00-start-here/what-is-seo",
       "title": "SEO 是什么",
+      "module": "00-start-here",
       "tags": [
         "seo",
         "入门",
@@ -49,6 +53,7 @@
     {
       "id": "00-start-here/why-this-kb",
       "title": "为什么需要这个知识库（而不是直接问 AI）",
+      "module": "00-start-here",
       "tags": [
         "seo",
         "入门",
@@ -60,6 +65,7 @@
     {
       "id": "10-fundamentals/_INDEX",
       "title": "10 基础 · 目录索引",
+      "module": "10-fundamentals",
       "tags": [
         "seo",
         "索引",
@@ -70,6 +76,7 @@
     {
       "id": "10-fundamentals/how-search-engines-work",
       "title": "搜索引擎是怎么工作的",
+      "module": "10-fundamentals",
       "tags": [
         "seo",
         "基础",
@@ -80,6 +87,7 @@
     {
       "id": "10-fundamentals/seo-four-pillars",
       "title": "SEO 的四大核心要素",
+      "module": "10-fundamentals",
       "tags": [
         "seo",
         "基础",
@@ -90,6 +98,7 @@
     {
       "id": "20-keyword/_INDEX",
       "title": "20 关键词 · 目录索引",
+      "module": "20-keyword",
       "tags": [
         "seo",
         "索引",
@@ -100,6 +109,7 @@
     {
       "id": "20-keyword/keyword-metrics",
       "title": "关键词 SEO 指标",
+      "module": "20-keyword",
       "tags": [
         "seo",
         "关键词",
@@ -110,6 +120,7 @@
     {
       "id": "20-keyword/keyword-priority",
       "title": "关键词优先级与页面规划（Topic Map / Keyword-to-Page）",
+      "module": "20-keyword",
       "tags": [
         "seo",
         "关键词",
@@ -121,6 +132,7 @@
     {
       "id": "20-keyword/keyword-research-basics",
       "title": "关键词研究入门",
+      "module": "20-keyword",
       "tags": [
         "seo",
         "关键词",
@@ -132,6 +144,7 @@
     {
       "id": "20-keyword/search-intent",
       "title": "搜索意图（Search Intent）",
+      "module": "20-keyword",
       "tags": [
         "seo",
         "关键词",
@@ -142,6 +155,7 @@
     {
       "id": "30-content/_INDEX",
       "title": "30 内容 · 目录索引",
+      "module": "30-content",
       "tags": [
         "seo",
         "索引",
@@ -152,6 +166,7 @@
     {
       "id": "30-content/content-types",
       "title": "常见 SEO 页面类型与写法",
+      "module": "30-content",
       "tags": [
         "seo",
         "内容",
@@ -162,6 +177,7 @@
     {
       "id": "30-content/eeat",
       "title": "E-E-A-T：经验·专业·权威·可信",
+      "module": "30-content",
       "tags": [
         "seo",
         "内容",
@@ -173,6 +189,7 @@
     {
       "id": "30-content/info-gain",
       "title": "信息增量（Info Gain）",
+      "module": "30-content",
       "tags": [
         "seo",
         "内容",
@@ -183,6 +200,7 @@
     {
       "id": "30-content/seo-content-basics",
       "title": "SEO 内容基础",
+      "module": "30-content",
       "tags": [
         "seo",
         "内容",
@@ -193,6 +211,7 @@
     {
       "id": "30-content/serp-research",
       "title": "SERP 研究（先看谷歌已经选了什么）",
+      "module": "30-content",
       "tags": [
         "seo",
         "内容",
@@ -204,6 +223,7 @@
     {
       "id": "40-on-page/_INDEX",
       "title": "40 页面 SEO · 目录索引",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "索引",
@@ -214,6 +234,7 @@
     {
       "id": "40-on-page/beginners-onpage-myths",
       "title": "页面 SEO 常见坑（新手必看）",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -224,6 +245,7 @@
     {
       "id": "40-on-page/external-links",
       "title": "出站链接（External Links）",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -235,6 +257,7 @@
     {
       "id": "40-on-page/headings-and-keywords",
       "title": "标题层级与关键词自然植入",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -246,6 +269,7 @@
     {
       "id": "40-on-page/image-optimization",
       "title": "图片优化",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -257,6 +281,7 @@
     {
       "id": "40-on-page/internal-links",
       "title": "内部链接（Internal Links）",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -267,6 +292,7 @@
     {
       "id": "40-on-page/schema-markup",
       "title": "Schema 标记（结构化数据）",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -278,6 +304,7 @@
     {
       "id": "40-on-page/tdk",
       "title": "TDK 与 SEO 友好 URL",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -290,6 +317,7 @@
     {
       "id": "40-on-page/ux-core-web-vitals",
       "title": "用户体验与 Core Web Vitals",
+      "module": "40-on-page",
       "tags": [
         "seo",
         "页面",
@@ -301,6 +329,7 @@
     {
       "id": "50-links/_INDEX",
       "title": "50 链接建设 · 目录索引",
+      "module": "50-links",
       "tags": [
         "seo",
         "索引",
@@ -311,6 +340,7 @@
     {
       "id": "50-links/free-high-dr-backlinks",
       "title": "高权重外链白嫖（作者自有打法）",
+      "module": "50-links",
       "tags": [
         "seo",
         "外链",
@@ -323,6 +353,7 @@
     {
       "id": "50-links/how-to-build-links",
       "title": "如何建立链接（合法做法）",
+      "module": "50-links",
       "tags": [
         "seo",
         "外链",
@@ -333,6 +364,7 @@
     {
       "id": "50-links/link-building-basics",
       "title": "链接建设基础",
+      "module": "50-links",
       "tags": [
         "seo",
         "外链",
@@ -343,6 +375,7 @@
     {
       "id": "50-links/link-strategies",
       "title": "可持续的外链策略",
+      "module": "50-links",
       "tags": [
         "seo",
         "外链",
@@ -353,6 +386,7 @@
     {
       "id": "50-links/what-links-work",
       "title": "什么样的链接真正有用",
+      "module": "50-links",
       "tags": [
         "seo",
         "外链",
@@ -363,6 +397,7 @@
     {
       "id": "60-technical/_INDEX",
       "title": "60 技术 SEO · 目录索引",
+      "module": "60-technical",
       "tags": [
         "seo",
         "索引",
@@ -373,6 +408,7 @@
     {
       "id": "60-technical/crawl-and-index",
       "title": "抓取与索引（让谷歌来得了、收得进）",
+      "module": "60-technical",
       "tags": [
         "seo",
         "技术",
@@ -384,6 +420,7 @@
     {
       "id": "60-technical/seo-tools",
       "title": "SEO 工具清单",
+      "module": "60-technical",
       "tags": [
         "seo",
         "技术",
@@ -394,6 +431,7 @@
     {
       "id": "60-technical/technical-seo-quickwins",
       "title": "技术 SEO 速胜清单",
+      "module": "60-technical",
       "tags": [
         "seo",
         "技术",
@@ -404,6 +442,7 @@
     {
       "id": "70-local/_INDEX",
       "title": "70 本地 SEO · 目录索引",
+      "module": "70-local",
       "tags": [
         "seo",
         "索引",
@@ -414,6 +453,7 @@
     {
       "id": "70-local/local-seo-basics",
       "title": "本地 SEO 基础",
+      "module": "70-local",
       "tags": [
         "seo",
         "本地",
@@ -424,6 +464,7 @@
     {
       "id": "80-ai-search/_INDEX",
       "title": "80 AI 搜索 · 目录索引",
+      "module": "80-ai-search",
       "tags": [
         "seo",
         "索引",
@@ -434,6 +475,7 @@
     {
       "id": "80-ai-search/ai-overviews-aeo",
       "title": "AI 概览与 AEO（答案引擎优化）",
+      "module": "80-ai-search",
       "tags": [
         "seo",
         "AI搜索",
@@ -444,6 +486,7 @@
     {
       "id": "80-ai-search/geo",
       "title": "GEO：生成式引擎优化",
+      "module": "80-ai-search",
       "tags": [
         "seo",
         "AI搜索",
@@ -455,6 +498,7 @@
     {
       "id": "90-saas-playbook/_INDEX",
       "title": "90 SaaS / 工具站实战 · 目录索引",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "索引",
@@ -466,6 +510,7 @@
     {
       "id": "90-saas-playbook/ai-search-playbook",
       "title": "AI 搜索时代的 SEO 与 GEO",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -477,6 +522,7 @@
     {
       "id": "90-saas-playbook/content-production",
       "title": "内容生产规范（工具站 / SaaS 视角）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -490,6 +536,7 @@
     {
       "id": "90-saas-playbook/data-review",
       "title": "从收录到转化：SEO 数据复盘",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -502,6 +549,7 @@
     {
       "id": "90-saas-playbook/ideal-customer-profile",
       "title": "找到你的 SEO 理想用户画像（SEO-ICP）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -513,6 +561,7 @@
     {
       "id": "90-saas-playbook/international-seo",
       "title": "国际化 SEO（多语言 / 多地区）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -524,6 +573,7 @@
     {
       "id": "90-saas-playbook/keyword-to-page",
       "title": "从关键词到页面（Topic Map / Keyword-to-Page / URL 结构）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -536,6 +586,7 @@
     {
       "id": "90-saas-playbook/off-site-trust",
       "title": "站外信任：让外部世界为你投票",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -547,6 +598,7 @@
     {
       "id": "90-saas-playbook/on-page-checklist",
       "title": "单页发布前检查清单（On-Page Checklist）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -558,6 +610,7 @@
     {
       "id": "90-saas-playbook/programmatic-seo",
       "title": "程序化 SEO（pSEO）的双刃剑",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -570,6 +623,7 @@
     {
       "id": "90-saas-playbook/seo-is-a-system",
       "title": "SEO 是一套增长系统（不是排名技巧）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -581,6 +635,7 @@
     {
       "id": "90-saas-playbook/site-foundation",
       "title": "站内基建：从第一天搭好地基（含\"整站打内页\"打法）",
+      "module": "90-saas-playbook",
       "tags": [
         "seo",
         "SaaS",
@@ -593,24 +648,28 @@
     {
       "id": "AGENTS",
       "title": "AGENTS.md — 如何让 AI 用这个知识库回答 SEO 问题",
+      "module": "(根)",
       "tags": [],
       "degree": 0
     },
     {
       "id": "README",
       "title": "SEO 知识库 · seo_assistant",
+      "module": "(根)",
       "tags": [],
       "degree": 1
     },
     {
       "id": "SCHEMA",
       "title": "SCHEMA.md — SEO 知识库结构约定",
+      "module": "(根)",
       "tags": [],
       "degree": 0
     },
     {
       "id": "glossary/_INDEX",
       "title": "术语表 · A-Z 主索引",
+      "module": "glossary",
       "tags": [
         "seo",
         "索引",
@@ -621,6 +680,7 @@
     {
       "id": "glossary/ai-search",
       "title": "术语表 · AI 搜索",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -631,6 +691,7 @@
     {
       "id": "glossary/basics",
       "title": "术语表 · 基础概念",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -641,6 +702,7 @@
     {
       "id": "glossary/content",
       "title": "术语表 · 内容",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -651,6 +713,7 @@
     {
       "id": "glossary/keyword",
       "title": "术语表 · 关键词",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -661,6 +724,7 @@
     {
       "id": "glossary/links",
       "title": "术语表 · 链接",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -671,6 +735,7 @@
     {
       "id": "glossary/metrics",
       "title": "术语表 · 指标与评分",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -681,6 +746,7 @@
     {
       "id": "glossary/technical",
       "title": "术语表 · 技术 SEO",
+      "module": "glossary",
       "tags": [
         "seo",
         "术语",
@@ -691,6 +757,7 @@
     {
       "id": "index",
       "title": "全库页面索引（总索引）",
+      "module": "(根)",
       "tags": [
         "seo",
         "索引",
@@ -701,6 +768,7 @@
     {
       "id": "references/_INDEX",
       "title": "外部信源索引 · 总表",
+      "module": "references",
       "tags": [
         "seo",
         "索引",
@@ -711,6 +779,7 @@
     {
       "id": "references/ahrefs-seo-guide",
       "title": "信源索引：Ahrefs SEO 指南（中文）",
+      "module": "references",
       "tags": [
         "seo",
         "信源",
@@ -721,6 +790,7 @@
     {
       "id": "references/gefei-seo-collection",
       "title": "信源索引：哥飞 SEO 合集（作者私有 vault）",
+      "module": "references",
       "tags": [
         "seo",
         "信源",
@@ -732,6 +802,7 @@
     {
       "id": "references/saas-seo-playbook",
       "title": "信源索引：saas-seo-playbook",
+      "module": "references",
       "tags": [
         "seo",
         "信源",
@@ -743,6 +814,7 @@
     {
       "id": "references/公众号介绍-seo知识库",
       "title": "我做了一个 SEO 知识库：新手能系统学，AI 接上就能答",
+      "module": "references",
       "tags": [
         "seo",
         "公众号",
