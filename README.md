@@ -56,6 +56,8 @@
 
 ## 基于图谱的问答（GraphRAG）
 
+想直接看效果？见 [`DEMO.md`](./DEMO.md) —— 4 个真实问答示例（概念 / 具体+图扩展 / 你的立场红线 / 跨页综述）。
+
 本库附带一个轻量 GraphRAG 问答管线 [`tools/graphrag_qa.py`](./tools/graphrag_qa.py)，把图谱当图结构层来用：
 
 - **检索**：本机 Embedding 模型做语义召回（比关键词准）；
