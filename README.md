@@ -54,6 +54,24 @@
 - **机器消费**：[`graph/graph.json`](./graph/graph.json) 含全部节点/边/语义关系；[`graph/semantic_edges.json`](./graph/semantic_edges.json) 是语义关系层的独立审计文件。
 - **重新生成**：`python3 tools/build_graph.py`（重抽语义层：`python3 tools/extract_semantic.py`）。markdown 为真源，图谱为派生视图，改了文档重跑即可。
 
+## 基于图谱的问答（GraphRAG）
+
+本库附带一个轻量 GraphRAG 问答管线 [`tools/graphrag_qa.py`](./tools/graphrag_qa.py)，把图谱当图结构层来用：
+
+- **检索**：本机 Embedding 模型做语义召回（比关键词准）；
+- **图扩展**：命中页后沿 `[[双链]]` + 语义边**走 1~2 跳邻居**补上下文（普通 RAG 没有的增量）；
+- **全局/综述题**：用按模块预生成的**社区摘要**答"整体立场/体系/对比"这类跨页题。
+
+```bash
+export OPENAI_BASE_URL=...   # OpenAI 兼容网关（如 SiliconFlow）
+export OPENAI_API_KEY=...
+python3 tools/graphrag_qa.py index              # 建索引（Embedding + 社区摘要）
+python3 tools/graphrag_qa.py ask "外链怎么做"     # 普通问答
+python3 tools/graphrag_qa.py ask "你这套对外链的整体立场" --global  # 全局综述
+```
+
+产物：`graph/embeddings.json`（页向量）、`graph/community_summaries.json`（模块摘要）。均为派生，可重跑重建。
+
 ## 版权与署名
 
 - 本库原创内容：CC-BY-4.0，署名 `kldwz / seo_assistant` 即可自由使用。
