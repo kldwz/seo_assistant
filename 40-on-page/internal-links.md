@@ -33,4 +33,4 @@ updated: 2026-11-02
 ## 关联
 
 - [[40-on-page/external-links]] — 出站链接怎么用
-- [[50-links/]] — 站外链接（外链）这一块
+- [[50-links/_INDEX]] — 站外链接（外链）这一块

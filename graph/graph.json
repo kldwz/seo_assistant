@@ -1,9 +1,10 @@
 {
   "stats": {
     "node_count": 72,
-    "edge_count": 186,
+    "edge_count": 188,
+    "semantic_edge_count": 81,
     "orphan_count": 4,
-    "missing_link_count": 5
+    "missing_link_count": 3
   },
   "nodes": [
     {
@@ -276,7 +277,7 @@
         "图片",
         "速度"
       ],
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "40-on-page/internal-links",
@@ -287,7 +288,7 @@
         "页面",
         "内链"
       ],
-      "degree": 7
+      "degree": 8
     },
     {
       "id": "40-on-page/schema-markup",
@@ -335,7 +336,7 @@
         "索引",
         "外链"
       ],
-      "degree": 6
+      "degree": 7
     },
     {
       "id": "50-links/free-high-dr-backlinks",
@@ -403,7 +404,7 @@
         "索引",
         "技术"
       ],
-      "degree": 5
+      "degree": 6
     },
     {
       "id": "60-technical/crawl-and-index",
@@ -1085,8 +1086,16 @@
       "target": "40-on-page/ux-core-web-vitals"
     },
     {
+      "source": "40-on-page/image-optimization",
+      "target": "60-technical/_INDEX"
+    },
+    {
       "source": "40-on-page/internal-links",
       "target": "40-on-page/external-links"
+    },
+    {
+      "source": "40-on-page/internal-links",
+      "target": "50-links/_INDEX"
     },
     {
       "source": "40-on-page/schema-markup",
@@ -1569,6 +1578,494 @@
       "target": "references/_INDEX"
     }
   ],
+  "semantic_edges": [
+    {
+      "source": "SCHEMA",
+      "relation": "依赖",
+      "target": "README",
+      "rationale": "SCHEMA.md 定义了知识库的结构规范，而 README.md 是知识库的入口和概述，两者在知识库的构建和使用上密切相关。"
+    },
+    {
+      "source": "SCHEMA",
+      "relation": "包含",
+      "target": "index",
+      "rationale": "SCHEMA.md 中提到了全库索引的约定，而 index.md 是全库页面的总索引，两者在索引功能上有关联。"
+    },
+    {
+      "source": "README",
+      "relation": "扩展",
+      "target": "00-start-here/what-is-seo",
+      "rationale": "README.md 中提到了新手学习路径，其中包括了 'SEO 是什么' 这一基础概念，与 what-is-seo.md 内容直接相关。"
+    },
+    {
+      "source": "README",
+      "relation": "补充",
+      "target": "00-start-here/learning-path",
+      "rationale": "README.md 中提到了新手三步学习路径，而 learning-path.md 提供了更详细的学习路线图，两者在引导新手学习方面相辅相成。"
+    },
+    {
+      "source": "AGENTS",
+      "relation": "前提",
+      "target": "glossary/_INDEX",
+      "rationale": "AGENTS.md 中规定了 AI 工具回答术语类问题时应先查阅术语表索引，这是使用 AI 工具的前提条件之一。"
+    },
+    {
+      "source": "AGENTS",
+      "relation": "依赖",
+      "target": "10-fundamentals/_INDEX",
+      "rationale": "AGENTS.md 中提到了搜索引擎原理类问题应查阅 10-fundamentals 目录，两者在知识检索路径上有关联。"
+    },
+    {
+      "source": "index",
+      "relation": "包含",
+      "target": "00-start-here/_INDEX",
+      "rationale": "index.md 是全库总索引，包含了 00-start-here 目录的索引信息，两者在索引层级上是包含关系。"
+    },
+    {
+      "source": "SCHEMA",
+      "relation": "适用",
+      "target": "glossary/_INDEX",
+      "rationale": "SCHEMA.md 中提到了术语定义的处理方式，而 glossary/_INDEX.md 是术语表的主索引，两者在术语管理上有关联。"
+    },
+    {
+      "source": "README",
+      "relation": "参考",
+      "target": "references/_INDEX",
+      "rationale": "README.md 中提到参考了外部资料，而 references/_INDEX.md 是外部信源的总表，两者在引用来源上有关联。"
+    },
+    {
+      "source": "AGENTS",
+      "relation": "扩展",
+      "target": "90-saas-playbook/_INDEX",
+      "rationale": "AGENTS.md 中提到了 SaaS/工具站实战类问题应查阅 90-saas-playbook 目录，两者在专业领域知识检索上有关联。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "10-fundamentals/how-search-engines-work",
+      "rationale": "学习路径中第二阶段需要先了解搜索引擎工作原理。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "20-keyword/keyword-research-basics",
+      "rationale": "学习路径中第三阶段需要先掌握关键词研究基础。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "30-content/seo-content-basics",
+      "rationale": "学习路径中第四阶段需要先学习 SEO 内容基础。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "40-on-page/_INDEX",
+      "rationale": "学习路径中第五阶段需要先了解页面 SEO 的基础知识。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "50-links/link-building-basics",
+      "rationale": "学习路径中第六阶段需要先学习链接建设基础。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "60-technical/_INDEX",
+      "rationale": "学习路径中第七阶段需要先了解技术 SEO 的基础知识。"
+    },
+    {
+      "source": "00-start-here/learning-path",
+      "relation": "依赖",
+      "target": "80-ai-search/_INDEX",
+      "rationale": "学习路径中第九阶段需要先了解 AI 搜索的基础知识。"
+    },
+    {
+      "source": "00-start-here/beginners-myths",
+      "relation": "反例",
+      "target": "50-links/what-links-work",
+      "rationale": "新手常见误区中提到了买外链的误区，与什么样的链接真正有用形成反例。"
+    },
+    {
+      "source": "00-start-here/beginners-myths",
+      "relation": "反例",
+      "target": "60-technical/_INDEX",
+      "rationale": "新手常见误区中提到了小网站不用管技术 SEO 的误区，与技术 SEO 的基础知识形成反例。"
+    },
+    {
+      "source": "00-start-here/what-is-seo",
+      "relation": "扩展",
+      "target": "10-fundamentals/seo-four-pillars",
+      "rationale": "SEO 是什么中提到了 SEO 的三大块，可以扩展学习 SEO 的四大核心要素。"
+    },
+    {
+      "source": "10-fundamentals/seo-four-pillars",
+      "relation": "依赖",
+      "target": "20-keyword/keyword-research-basics",
+      "rationale": "SEO 四大要素中的'有人搜'部分明确提到关键词研究是确认需求存在的基础步骤。"
+    },
+    {
+      "source": "10-fundamentals/seo-four-pillars",
+      "relation": "依赖",
+      "target": "60-technical/crawl-and-index",
+      "rationale": "'能抓取'要素直接关联技术 SEO 中的抓取与索引问题，确保页面能被搜索引擎发现和收录。"
+    },
+    {
+      "source": "10-fundamentals/seo-four-pillars",
+      "relation": "扩展",
+      "target": "30-content/eeat",
+      "rationale": "'内容值'要素提到 E-E-A-T 标准，详细解释见内容模块的专门页面。"
+    },
+    {
+      "source": "10-fundamentals/seo-four-pillars",
+      "relation": "依赖",
+      "target": "50-links/link-building-basics",
+      "rationale": "'有权威'要素强调外链的作用，与链接建设基础内容直接相关。"
+    },
+    {
+      "source": "10-fundamentals/how-search-engines-work",
+      "relation": "前提",
+      "target": "60-technical/technical-seo-quickwins",
+      "rationale": "搜索引擎工作原理中抓取和索引的障碍解决，需要技术 SEO 速胜清单中的实操方法。"
+    },
+    {
+      "source": "10-fundamentals/how-search-engines-work",
+      "relation": "补充",
+      "target": "40-on-page/ux-core-web-vitals",
+      "rationale": "排名阶段的用户体验信号部分，需要 Core Web Vitals 等页面体验优化知识补充。"
+    },
+    {
+      "source": "10-fundamentals/_INDEX",
+      "relation": "对比",
+      "target": "00-start-here/what-is-seo",
+      "rationale": "基础模块目录与新手入口的'SEO 是什么'形成概念层级对比，前者侧重原理后者侧重定义。"
+    },
+    {
+      "source": "10-fundamentals/seo-four-pillars",
+      "relation": "因果",
+      "target": "90-saas-playbook/seo-is-a-system",
+      "rationale": "四大要素的系统性思维与 SaaS 实战中的'SEO 是一套增长系统'观点形成因果印证。"
+    },
+    {
+      "source": "20-keyword/keyword-metrics",
+      "relation": "补充",
+      "target": "30-content/serp-research",
+      "rationale": "评估关键词难度时需要结合 SERP 研究分析实际搜索结果竞争情况"
+    },
+    {
+      "source": "20-keyword/keyword-research-basics",
+      "relation": "工具",
+      "target": "60-technical/seo-tools",
+      "rationale": "关键词研究需要借助 SEO 工具实现种子词发散和竞品分析"
+    },
+    {
+      "source": "20-keyword/_INDEX",
+      "relation": "包含",
+      "target": "glossary/keyword",
+      "rationale": "关键词模块的术语定义需要参考术语表中的关键词相关词条"
+    },
+    {
+      "source": "20-keyword/keyword-priority",
+      "relation": "实践",
+      "target": "90-saas-playbook/site-foundation",
+      "rationale": "关键词优先级规划是站点基础建设的重要环节"
+    },
+    {
+      "source": "30-content/eeat",
+      "relation": "前提",
+      "target": "10-fundamentals/seo-four-pillars",
+      "rationale": "E-E-A-T 是 SEO 四大核心要素中内容质量的重要组成部分，理解 E-E-A-T 需要先了解 SEO 的基本框架。"
+    },
+    {
+      "source": "30-content/content-types",
+      "relation": "依赖",
+      "target": "20-keyword/search-intent",
+      "rationale": "选择正确的页面类型需要先理解用户的搜索意图，意图决定了最适合的页面类型。"
+    },
+    {
+      "source": "30-content/serp-research",
+      "relation": "扩展",
+      "target": "20-keyword/keyword-research-basics",
+      "rationale": "SERP 研究是关键词研究的延伸步骤，通过分析搜索结果来优化内容策略。"
+    },
+    {
+      "source": "30-content/seo-content-basics",
+      "relation": "包含",
+      "target": "40-on-page/tdk",
+      "rationale": "SEO 内容基础中提到的发布前检查包括 TDK（标题、描述、关键词）的优化，这是页面 SEO 的关键部分。"
+    },
+    {
+      "source": "30-content/content-types",
+      "relation": "对比",
+      "target": "30-content/seo-content-basics",
+      "rationale": "页面类型的选择与 SEO 内容基础中的内容创建步骤相辅相成，共同决定内容的最终形式。"
+    },
+    {
+      "source": "30-content/serp-research",
+      "relation": "适用",
+      "target": "90-saas-playbook/keyword-to-page",
+      "rationale": "SERP 研究的结果可以指导从关键词到页面的映射，帮助 SaaS 站点更好地规划内容。"
+    },
+    {
+      "source": "40-on-page/internal-links",
+      "relation": "前提",
+      "target": "20-keyword/keyword-priority",
+      "rationale": "内链结构需要基于关键词优先级规划的 Topic Map"
+    },
+    {
+      "source": "40-on-page/headings-and-keywords",
+      "relation": "对比",
+      "target": "40-on-page/beginners-onpage-myths",
+      "rationale": "自然植入关键词与新手常见的堆砌误区形成鲜明对比"
+    },
+    {
+      "source": "40-on-page/beginners-onpage-myths",
+      "relation": "反例",
+      "target": "90-saas-playbook/programmatic-seo",
+      "rationale": "新站批量生成页面是程序化 SEO 的典型错误实施案例"
+    },
+    {
+      "source": "40-on-page/_INDEX",
+      "relation": "扩展",
+      "target": "00-start-here/beginners-myths",
+      "rationale": "页面 SEO 目录索引与新手误区模块形成宏观-微观的知识补充"
+    },
+    {
+      "source": "50-links/link-building-basics",
+      "relation": "前提",
+      "target": "10-fundamentals/how-search-engines-work",
+      "rationale": "理解外链重要性的前提是了解搜索引擎如何通过链接判断页面可信度。"
+    },
+    {
+      "source": "50-links/what-links-work",
+      "relation": "补充",
+      "target": "40-on-page/external-links",
+      "rationale": "外链质量评估标准与出站链接策略形成内外链接质量控制的完整视角。"
+    },
+    {
+      "source": "50-links/how-to-build-links",
+      "relation": "依赖",
+      "target": "30-content/content-types",
+      "rationale": "创建'值得被链'的内容需要掌握SEO内容类型与创作方法。"
+    },
+    {
+      "source": "50-links/free-high-dr-backlinks",
+      "relation": "适用",
+      "target": "90-saas-playbook/programmatic-seo",
+      "rationale": "数字资产型外链特别适合程序化SEO项目中批量创建高权重入口。"
+    },
+    {
+      "source": "50-links/_INDEX",
+      "relation": "包含",
+      "target": "00-start-here/learning-path",
+      "rationale": "链接建设模块是SEO学习路径中站外信任环节的核心组成部分。"
+    },
+    {
+      "source": "50-links/link-building-basics",
+      "relation": "对比",
+      "target": "00-start-here/beginners-myths",
+      "rationale": "强调'赢得链接而非购买'的原则与新手常见买链接误区形成鲜明对比。"
+    },
+    {
+      "source": "50-links/what-links-work",
+      "relation": "因果",
+      "target": "60-technical/technical-seo-quickwins",
+      "rationale": "低质量外链可能导致惩罚，与技术SEO速胜清单中的风险规避形成因果关系。"
+    },
+    {
+      "source": "50-links/link-strategies",
+      "relation": "扩展",
+      "target": "20-keyword/keyword-priority",
+      "rationale": "外链策略需配合关键词优先级规划，针对高价值目标实施精准外联。"
+    },
+    {
+      "source": "50-links/how-to-build-links",
+      "relation": "前提",
+      "target": "30-content/eeat",
+      "rationale": "创建可引用的内容资产需要遵循E-E-A-T原则建立专业权威性。"
+    },
+    {
+      "source": "60-technical/crawl-and-index",
+      "relation": "扩展",
+      "target": "40-on-page/internal-links",
+      "rationale": "内部链接帮助爬虫发现重要页面，是抓取与索引的重要补充。"
+    },
+    {
+      "source": "60-technical/technical-seo-quickwins",
+      "relation": "扩展",
+      "target": "40-on-page/image-optimization",
+      "rationale": "速胜清单中提到的速度优化建议扩展了图片优化的内容。"
+    },
+    {
+      "source": "60-technical/crawl-and-index",
+      "relation": "补充",
+      "target": "40-on-page/schema-markup",
+      "rationale": "结构化数据标记可以帮助搜索引擎更好地理解和索引页面内容。"
+    },
+    {
+      "source": "60-technical/technical-seo-quickwins",
+      "relation": "补充",
+      "target": "40-on-page/ux-core-web-vitals",
+      "rationale": "速胜清单中的速度优化与用户体验和Core Web Vitals密切相关。"
+    },
+    {
+      "source": "70-local/local-seo-basics",
+      "relation": "依赖",
+      "target": "40-on-page/schema-markup",
+      "rationale": "本地 SEO 中提到的 LocalBusiness Schema 结构化数据标记需要参考 Schema 标记页面"
+    },
+    {
+      "source": "70-local/local-seo-basics",
+      "relation": "扩展",
+      "target": "20-keyword/search-intent",
+      "rationale": "本地 SEO 强调地域意图搜索，与搜索意图页面中讨论的意图分类直接相关"
+    },
+    {
+      "source": "70-local/local-seo-basics",
+      "relation": "前提",
+      "target": "60-technical/technical-seo-quickwins",
+      "rationale": "本地 SEO 需要基础技术 SEO 支持，速胜清单中的技术优化是前提条件"
+    },
+    {
+      "source": "70-local/local-seo-basics",
+      "relation": "对比",
+      "target": "10-fundamentals/seo-four-pillars",
+      "rationale": "本地 SEO 作为通用 SEO 的子集，可与四大核心要素形成对比关系"
+    },
+    {
+      "source": "70-local/local-seo-basics",
+      "relation": "适用",
+      "target": "90-saas-playbook/international-seo",
+      "rationale": "本地 SEO 方法论可适用于国际化 SEO 中的多地区优化场景"
+    },
+    {
+      "source": "80-ai-search/ai-overviews-aeo",
+      "relation": "依赖",
+      "target": "40-on-page/schema-markup",
+      "rationale": "AEO 建议使用结构化数据（Schema Markup）来帮助 AI 解析内容。"
+    },
+    {
+      "source": "80-ai-search/ai-overviews-aeo",
+      "relation": "补充",
+      "target": "30-content/eeat",
+      "rationale": "AEO 强调内容的事实准确性和出处，这与 E-E-A-T（经验·专业·权威·可信）原则密切相关。"
+    },
+    {
+      "source": "80-ai-search/ai-overviews-aeo",
+      "relation": "扩展",
+      "target": "40-on-page/beginners-onpage-myths",
+      "rationale": "AEO 提到部分传统点击被'零点击'吞掉，这与页面 SEO 常见坑中的讨论相呼应。"
+    },
+    {
+      "source": "80-ai-search/geo",
+      "relation": "依赖",
+      "target": "50-links/_INDEX",
+      "rationale": "GEO 建议争取被权威站引用，这与链接建设的基础策略相关。"
+    },
+    {
+      "source": "80-ai-search/geo",
+      "relation": "关联",
+      "target": "90-saas-playbook/ai-search-playbook",
+      "rationale": "GEO 与 AI 搜索时代的 SEO 策略密切相关，后者提供了更具体的实战指南。"
+    },
+    {
+      "source": "90-saas-playbook/keyword-to-page",
+      "relation": "扩展",
+      "target": "20-keyword/search-intent",
+      "rationale": "关键词到页面的映射需要深入理解搜索意图才能正确分类"
+    },
+    {
+      "source": "90-saas-playbook/programmatic-seo",
+      "relation": "对比",
+      "target": "30-content/info-gain",
+      "rationale": "程序化SEO强调批量生成，与信息增量要求的深度内容形成对比"
+    },
+    {
+      "source": "90-saas-playbook/site-foundation",
+      "relation": "包含",
+      "target": "60-technical/technical-seo-quickwins",
+      "rationale": "站内基建包含技术SEO速胜清单中的多项基础检查点"
+    },
+    {
+      "source": "90-saas-playbook/seo-is-a-system",
+      "relation": "因果",
+      "target": "10-fundamentals/seo-four-pillars",
+      "rationale": "将SEO视为系统是四大核心要素协同作用的结果"
+    },
+    {
+      "source": "90-saas-playbook/on-page-checklist",
+      "relation": "补充",
+      "target": "40-on-page/tdk",
+      "rationale": "单页检查清单是对TDK等页面要素的实操补充"
+    },
+    {
+      "source": "90-saas-playbook/content-production",
+      "relation": "适用",
+      "target": "30-content/content-types",
+      "rationale": "内容生产规范特别适用于工具站的内容类型编写"
+    },
+    {
+      "source": "90-saas-playbook/off-site-trust",
+      "relation": "扩展",
+      "target": "50-links/free-high-dr-backlinks",
+      "rationale": "站外信任建设扩展了高权重外链获取的具体方法"
+    },
+    {
+      "source": "90-saas-playbook/ai-search-playbook",
+      "relation": "补充",
+      "target": "80-ai-search/geo",
+      "rationale": "AI搜索打法是对生成式引擎优化的实战补充"
+    },
+    {
+      "source": "glossary/metrics",
+      "relation": "对比",
+      "target": "glossary/links",
+      "rationale": "DA/PA等权威评分与链接质量指标密切相关"
+    },
+    {
+      "source": "references/ahrefs-seo-guide",
+      "relation": "参考",
+      "target": "10-fundamentals/how-search-engines-work",
+      "rationale": "Ahrefs SEO 指南的第一章『搜索引擎的工作原理』与本知识库的『搜索引擎是怎么工作的』页面内容高度相关，可作为延伸阅读参考。"
+    },
+    {
+      "source": "references/ahrefs-seo-guide",
+      "relation": "扩展",
+      "target": "glossary/basics",
+      "rationale": "Ahrefs SEO 指南的附录『SEO 术语表』与本知识库的『术语表 · 基础概念』页面内容互补，可帮助用户理解基础术语。"
+    },
+    {
+      "source": "references/saas-seo-playbook",
+      "relation": "借鉴",
+      "target": "90-saas-playbook/seo-is-a-system",
+      "rationale": "saas-seo-playbook 的第一部分『认知打底：SEO 是系统』与本知识库的『SEO 是一套增长系统』页面内容相似，后者借鉴了前者的框架。"
+    },
+    {
+      "source": "references/saas-seo-playbook",
+      "relation": "参考",
+      "target": "20-keyword/keyword-priority",
+      "rationale": "saas-seo-playbook 的第二部分『站点规划：关键词→Topic Map』与本知识库的『关键词优先级与页面规划』页面内容相关，可作为参考。"
+    },
+    {
+      "source": "references/gefei-seo-collection",
+      "relation": "启发",
+      "target": "50-links/free-high-dr-backlinks",
+      "rationale": "哥飞 SEO 合集中的『一个一般人想不到的发外链方式』启发了本知识库的『高权重外链白嫖』页面内容。"
+    },
+    {
+      "source": "references/gefei-seo-collection",
+      "relation": "补充",
+      "target": "00-start-here/beginners-myths",
+      "rationale": "哥飞 SEO 合集中的『SEO 是能赚钱的本领但不是点金术』与本知识库的『新手常见误区』页面内容互补，可帮助新手避免误区。"
+    },
+    {
+      "source": "references/公众号介绍-seo知识库",
+      "relation": "关联",
+      "target": "00-start-here/why-this-kb",
+      "rationale": "公众号介绍中提到的『为什么需要这个知识库』与本知识库的『为什么需要这个知识库（而不是直接问 AI）』页面内容直接相关。"
+    }
+  ],
   "orphans": [
     "AGENTS",
     "SCHEMA",
@@ -1576,14 +2073,6 @@
     "references/公众号介绍-seo知识库"
   ],
   "missing": [
-    {
-      "from": "40-on-page/image-optimization",
-      "raw": "60-technical/"
-    },
-    {
-      "from": "40-on-page/internal-links",
-      "raw": "50-links/"
-    },
     {
       "from": "AGENTS",
       "raw": "相对路径"

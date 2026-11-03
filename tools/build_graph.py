@@ -154,15 +154,29 @@ def main():
     # 孤立页（无任何边）
     orphans = [n["id"] for n in nodes.values() if n["degree"] == 0]
 
+    # 保留上一轮已抽的语义关系层（Phase 1 成果不被重跑覆盖）
+    semantic_edges = []
+    sem_count = 0
+    old_graph = os.path.join(GRAPH_DIR, "graph.json")
+    if os.path.exists(old_graph):
+        try:
+            prev = json.load(open(old_graph, encoding="utf-8"))
+            semantic_edges = prev.get("semantic_edges", [])
+            sem_count = len(semantic_edges)
+        except Exception:
+            pass
+
     graph = {
         "stats": {
             "node_count": len(nodes),
             "edge_count": len(edges),
+            "semantic_edge_count": sem_count,
             "orphan_count": len(orphans),
             "missing_link_count": len(missing),
         },
         "nodes": list(nodes.values()),
         "edges": edges,
+        "semantic_edges": semantic_edges,
         "orphans": orphans,
         "missing": missing,
     }
@@ -203,6 +217,8 @@ def write_html(graph):
   #legend .lg.off{opacity:.35;text-decoration:line-through}
   #legend .dot{width:11px;height:11px;border-radius:3px}
   #cy{position:absolute;top:52px;left:0;right:340px;bottom:0}
+  #bar .tgl{font-size:12px;color:var(--mut);cursor:pointer;user-select:none;padding:5px 10px;border:1px solid var(--line);border-radius:7px;background:#0f1115}
+  #bar .tgl.on{color:#0f1115;background:#22d3ee;border-color:#22d3ee;font-weight:600}
   #side{position:absolute;top:52px;right:0;width:340px;bottom:0;background:var(--panel);border-left:1px solid var(--line);padding:18px;overflow:auto}
   #side h2{font-size:16px;margin:0 0 6px}
   #side .mod{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;color:#0f1115;font-weight:600;margin-bottom:10px}
@@ -222,6 +238,7 @@ def write_html(graph):
   <strong>SEO 知识库 · 关系图谱</strong>
   <input id="search" placeholder="搜索节点（标题/路径）…"/>
   <span class="stat" id="stat"></span>
+  <span class="tgl on" id="tglSem">语义关系：开</span>
   <span id="legend"></span>
 </div>
 <div id="cy"></div>
@@ -246,7 +263,8 @@ const cy = cytoscape({
   elements: (function(){
     const els = [];
     DATA.nodes.forEach(n=>els.push({data:{id:n.id, label:n.title, module:n.module, tags:n.tags, deg:n.degree}}));
-    DATA.edges.forEach(e=>els.push({data:{id:e.source+'->'+e.target, source:e.source, target:e.target}}));
+    DATA.edges.forEach(e=>els.push({data:{id:e.source+'->'+e.target, source:e.source, target:e.target, kind:'wiki'}}));
+    (DATA.semantic_edges||[]).forEach(e=>els.push({data:{id:'S:'+e.source+'->'+e.target, source:e.source, target:e.target, kind:'sem', rel:e.relation}, classes:'sem'}));
     return els;
   })(),
   style:[
@@ -262,13 +280,24 @@ const cy = cytoscape({
     {selector:'node.hl', style:{'border-color':'#ffffff','border-width':3}},
     {selector:'node.dim', style:{'opacity':0.12}},
     {selector:'edge', style:{'width':1,'line-color':'#39414f','curve-style':'bezier','opacity':0.55}},
+    {selector:'edge.sem', style:{'line-color':'#22d3ee','line-style':'dashed','width':1.4,'opacity':0.5,'curve-style':'bezier','label':'data(rel)','font-size':8,'color':'#22d3ee','text-rotation':'autorotate','text-background-color':'#0f1115','text-background-opacity':0.85,'text-background-padding':2}},
     {selector:'edge.hl', style:{'line-color':'#ffcc4f','width':2.4,'opacity':1}},
+    {selector:'edge.sem.hl', style:{'line-color':'#ffcc4f','opacity':1,'font-size':9,'text-background-color':'#1a1d24'}},
     {selector:'edge.dim', style:{'opacity':0.04}}
   ],
   layout:{name:'cose', animate:false, padding:50, nodeRepulsion:26000, idealEdgeLength:130, gravity:0.45, numIter:2500, componentSpacing:200}
 });
 document.getElementById('stat').textContent =
-  `节点 ${DATA.stats.node_count} · 边 ${DATA.stats.edge_count} · 孤立 ${DATA.stats.orphan_count}`;
+  `节点 ${DATA.stats.node_count} · 显式边 ${DATA.stats.edge_count} · 语义边 ${DATA.stats.semantic_edge_count||0} · 孤立 ${DATA.stats.orphan_count}`;
+// 语义关系开关
+const tgl = document.getElementById('tglSem');
+let semOn = true;
+tgl.onclick = ()=>{
+  semOn = !semOn;
+  tgl.classList.toggle('on', semOn);
+  tgl.textContent = '语义关系：' + (semOn?'开':'关');
+  cy.edges('.sem').style('display', semOn?'element':'none');
+};
 // 图例
 const legend = document.getElementById('legend');
 const mods = [...new Set(DATA.nodes.map(n=>n.module))].sort();
@@ -292,8 +321,13 @@ function showDetail(n){
   const title = n.data('label'), mod = n.data('module');
   const tags = (n.data('tags')||[]).map(t=>`<span>${t}</span>`).join('');
   const nb = n.neighborhood('node').filter(x=>x.id()!==id);
-  const ins = n.incomers('edge').map(e=>e.source().data('label'));
-  const outs = n.outgoers('edge').map(e=>e.target().data('label'));
+  const ins = n.incomers('edge').filter(e=>!e.hasClass('sem')).map(e=>e.source().data('label'));
+  const outs = n.outgoers('edge').filter(e=>!e.hasClass('sem')).map(e=>e.target().data('label'));
+  // 语义关系（含关系类型）
+  const semOut = (DATA.semantic_edges||[]).filter(e=>e.source===id)
+    .map(e=>`<li><b style="color:#22d3ee">${e.relation}</b> → ${e.target.split('/').pop()}<div style="color:#8b93a1;font-size:11px">${e.rationale||''}</div></li>`);
+  const semIn = (DATA.semantic_edges||[]).filter(e=>e.target===id)
+    .map(e=>`<li>${e.source.split('/').pop()} <b style="color:#22d3ee">${e.relation}</b><div style="color:#8b93a1;font-size:11px">${e.rationale||''}</div></li>`);
   const gh = `https://github.com/kldwz/seo_assistant/blob/main/${id}.md`;
   const list = arr => arr.length ? `<ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul>` : '<div style="color:#8b93a1;font-size:12px">无</div>';
   document.getElementById('side').innerHTML =
@@ -301,8 +335,10 @@ function showDetail(n){
      <span class="mod" style="background:${colorOf(mod)}">${MOD_LABELS[mod]||mod} · ${mod}</span>
      <div class="tags">${tags||'<span style="color:#8b93a1">无标签</span>'}</div>
      <a href="${gh}" target="_blank">在 GitHub 打开原文 →</a>
-     <div class="sec">指向（本页链到）</div>${list(outs)}
-     <div class="sec">被指向（谁链到本页）</div>${list(ins)}`;
+     <div class="sec">显式引用（[[双链]]）</div>${list(outs)}
+     <div class="sec">被显式引用</div>${list(ins)}
+     <div class="sec" style="color:#22d3ee">语义关联（AI 抽取 · 隐含）</div>${semOut.length?`<ul>${semOut.join('')}</ul>`:'<div style="color:#8b93a1;font-size:12px">无</div>'}
+     <div class="sec" style="color:#22d3ee">被语义关联</div>${semIn.length?`<ul>${semIn.join('')}</ul>`:'<div style="color:#8b93a1;font-size:12px">无</div>'}`;
 }
 const search = document.getElementById('search');
 search.addEventListener('input', ()=>{

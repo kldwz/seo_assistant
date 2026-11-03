@@ -34,4 +34,4 @@ updated: 2026-11-02
 ## 关联
 
 - [[40-on-page/ux-core-web-vitals]] — 速度与体验指标
-- [[60-technical/]] — 更底层的技术优化
+- [[60-technical/_INDEX]] — 更底层的技术优化

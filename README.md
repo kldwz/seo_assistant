@@ -46,6 +46,14 @@
 
 请先阅读 [`AGENTS.md`](./AGENTS.md) —— 它规定了 AI 应如何在本库内检索、引用与回答，确保回答准确、有出处、对新手友好。
 
+## 知识图谱（可视化）
+
+本库附带一个自动生成的关系图谱（Phase 0 显式 `[[双链]]` + Phase 1 LLM 抽取的语义关系）：
+
+- **本地查看**：双击打开 [`graph/index.html`](./graph/index.html)（自带数据，无需联网即可看；按模块上色、可筛选、点击看详情）。
+- **机器消费**：[`graph/graph.json`](./graph/graph.json) 含全部节点/边/语义关系；[`graph/semantic_edges.json`](./graph/semantic_edges.json) 是语义关系层的独立审计文件。
+- **重新生成**：`python3 tools/build_graph.py`（重抽语义层：`python3 tools/extract_semantic.py`）。markdown 为真源，图谱为派生视图，改了文档重跑即可。
+
 ## 版权与署名
 
 - 本库原创内容：CC-BY-4.0，署名 `kldwz / seo_assistant` 即可自由使用。
